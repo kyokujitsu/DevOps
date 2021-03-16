@@ -1,0 +1,21 @@
+spec: 
+  config: 
+    http.enabled: true 
+    http.port: 5066 
+    http.host: 0.0.0.0 
+    monitoring.enabled: false 
+... 
+  daemonSet: 
+    podTemplate: 
+      metadata: 
+        labels: 
+          stack-monitoring.elastic.co/type: beat 
+        annotations: 
+          co.elastic.logs/enabled: "true" 
+      spec: 
+        containers: 
+        - name: filebeat 
+          ports: 
+          - containerPort: 5066 
+            name: monitoring 
+            protocol: TCP
