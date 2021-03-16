@@ -14,17 +14,6 @@ spec:
     - type: container
       paths:
       - /var/log/containers/*.log
-    filebeat:
-      autodiscover:
-        providers:
-        - type: kubernetes
-          node: ${NODE_NAME}
-          hints:
-            enabled: true
-            default_config:
-              type: container
-              paths:
-              - /var/log/containers/*${data.kubernetes.container.id}.log
     processors:
     - add_cloud_metadata: {}
     - add_host_metadata: {}
