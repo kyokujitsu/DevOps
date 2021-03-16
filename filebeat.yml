@@ -1,3 +1,5 @@
+ssl.verification_mode: "none"
+---
 apiVersion: beat.k8s.elastic.co/v1beta1
 kind: Beat
 metadata:
@@ -25,11 +27,6 @@ spec:
     - type: container
       paths:
       - /var/log/containers/*.log
-          env:
-          - name: NODE_NAME
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.nodeName
   daemonSet:
     podTemplate:
       spec:

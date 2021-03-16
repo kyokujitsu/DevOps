@@ -22,6 +22,11 @@ spec:
           stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
         annotations:
           co.elastic.logs/enabled: "true"
+env:
+  - name: NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
 ---
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
