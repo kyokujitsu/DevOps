@@ -1,0 +1,47 @@
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: quickstart
+spec:
+  version: 7.11.2
+  http:
+    service:
+      spec:
+        type: LoadBalancer #Adds a External IP
+  nodeSets:
+  - name: default
+    count: 3
+    config:
+      node.store.allow_mmap: false
+      xpack.monitoring.collection.enabled: true
+      xpack.monitoring.elasticsearch.collection.enabled: false
+    podTemplate:
+      metadata:
+        labels:
+          stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
+        annotations:
+          co.elastic.logs/enabled: "true"
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: quickstart
+spec:
+  version: 7.11.2
+  http:
+    service:
+      spec:
+        type: LoadBalancer #Adds a External IP
+  count: 1
+  elasticsearchRef:
+    name: quickstart
+  config:
+    xpack.monitoring.kibana.collection.enabled: false
+    xpack.monitoring.collection.enabled: true
+  podTemplate:
+    metadata:
+      labels:
+        stack-monitoring.elastic.co/type: kb # to allow autodiscover by metricbeat
+      annotations:
+        co.elastic.logs/enabled: "true"
