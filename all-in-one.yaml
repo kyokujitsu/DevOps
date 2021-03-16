@@ -56,7 +56,7 @@ data:
     webhook-name: elastic-webhook.k8s.elastic.co
 ---
 # Source: eck-operator/charts/eck-operator-crds/templates/all-crds.yaml
-apiVersion: apiextensions.k8s.io/v1beta
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   annotations:
@@ -341,7 +341,7 @@ status:
   storedVersions: []
 ---
 # Source: eck-operator/charts/eck-operator-crds/templates/all-crds.yaml
-apiVersion: apiextensions.k8s.io/v1
+apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
   annotations:
@@ -3594,4 +3594,3 @@ webhooks:
     - UPDATE
     resources:
     - kibanas
-
