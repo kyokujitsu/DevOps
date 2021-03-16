@@ -49,7 +49,7 @@ spec:
 apiVersion: apm.k8s.elastic.co/v1
 kind: ApmServer
 metadata:
-  name: quickstart
+  name: apm-server-quickstart
   namespace: default
 spec:
   version: 7.11.2
@@ -63,4 +63,4 @@ spec:
       labels:
         stack-monitoring.elastic.co/type: beat # to allow autodiscover by metricbeat
       annotations:
-        co.elastic.logs/enabled: "true"    
+        co.elastic.logs/enabled: "true"
