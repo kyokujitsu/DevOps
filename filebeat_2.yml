@@ -1,4 +1,5 @@
 ssl.verification_mode: "none"
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -18,6 +19,9 @@ data:
             type: container
             paths:
               - /var/log/containers/*${data.kubernetes.container.id}.log
+    output:
+      elasticsearch:
+        ssl.verification_mode: "none"           
 processors:
       - add_cloud_metadata:
       - add_host_metadata:
@@ -50,20 +54,20 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
       - name: filebeat
-        image: docker.elastic.co/beats/filebeat:7.6.0
+        image: docker.elastic.co/beats/filebeat:7.11.2
         args: [
           "-c", "/etc/filebeat.yml",
           "-e",
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: "https://ai-dev-prod-es-http.elasticsearch.svc"
+          value: "https://quickstart-es-http"
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: *********
+          value: h9BJeU9Hle3W696n63z19hab
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
