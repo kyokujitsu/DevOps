@@ -49,7 +49,7 @@ spec:
 apiVersion: apm.k8s.elastic.co/v1
 kind: ApmServer
 metadata:
-  name: apm
+  name: quickstart
 spec:
   version: 7.11.2
   count: 1
