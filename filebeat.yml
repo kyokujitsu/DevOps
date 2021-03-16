@@ -13,7 +13,7 @@ spec:
     filebeat:
       autodiscover:
         providers:
-        - host: ${HOSTNAME}
+        - host: default
           type: kubernetes
           hints:
             enabled: true
