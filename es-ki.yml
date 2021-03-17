@@ -44,15 +44,10 @@ spec:
   podTemplate:
     metadata:
       labels:
-        stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
+        stack-monitoring.elastic.co/type: kb # to allow autodiscover by metricbeat
         scrape: es
       annotations:
         co.elastic.logs/enabled: "true"
-  env:
-    - name: NODE_NAME
-      valueFrom:
-        fieldRef:
-          fieldPath: spec.nodeName
 ---
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
