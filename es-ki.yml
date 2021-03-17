@@ -41,7 +41,6 @@ spec:
           requests:
             storage: 5Gi
         storageClassName: standard
-
     podTemplate:
       metadata:
         labels:
@@ -49,11 +48,6 @@ spec:
           scrape: es
         annotations:
           co.elastic.logs/enabled: "true"
-  env:
-    - name: NODE_NAME
-      valueFrom:
-        fieldRef:
-          fieldPath: spec.nodeName
 ---
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
