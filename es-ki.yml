@@ -10,7 +10,7 @@ spec:
       spec:
         type: LoadBalancer #Adds a External IP
   nodeSets:
-  - name: default
+  - name: quickstart
     count: 3
     volumeClaimTemplates:
     - metadata:
