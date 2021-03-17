@@ -13,41 +13,21 @@ spec:
   - name: default
     count: 3
     config:
-      node.roles: ["master"]
-    volumeClaimTemplates:
-    - metadata:
-        name: elasticsearch-data
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 10Gi
-        storageClassName: standard
-  - name: data-nodes
-    count: 5
-    config:
-      node.roles: ["data"]
       node.store.allow_mmap: false
       xpack.monitoring.collection.enabled: true
       xpack.monitoring.elasticsearch.collection.enabled: false
-    volumeClaimTemplates:
-    - metadata:
-        name: elasticsearch-data
-      spec:
-        accessModes:
-        - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5Gi
-        storageClassName: standard
-  podTemplate:
-    metadata:
-      labels:
-        stack-monitoring.elastic.co/type: kb # to allow autodiscover by metricbeat
-        scrape: es
-      annotations:
-        co.elastic.logs/enabled: "true"
+    podTemplate:
+      metadata:
+        labels:
+          stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
+          scrape: es
+        annotations:
+          co.elastic.logs/enabled: "true"
+env:
+  - name: NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
 ---
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
