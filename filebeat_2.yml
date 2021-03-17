@@ -61,7 +61,7 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: "https://quickstart-es-http"
+          value: "https://quickstart-es-http.default.svc"
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME

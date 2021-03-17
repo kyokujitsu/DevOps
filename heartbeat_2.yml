@@ -117,13 +117,13 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: "https://ai-dev-prod-es-http.elasticsearch.svc"
+          value: "https://quickstart-es-http.default.svc"
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: **********
+          value: h9BJeU9Hle3W696n63z19hab
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
@@ -256,18 +256,17 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: elasticsearch
+          value: "https://quickstart-es-http.default.svc"
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
           value: elastic
         - name: ELASTICSEARCH_PASSWORD
-          value: changeme
+          value: h9BJeU9Hle3W696n63z19hab
         - name: ELASTIC_CLOUD_ID
           value:
         - name: ELASTIC_CLOUD_AUTH
           value:
-        - name: NODE_NAME
           valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
