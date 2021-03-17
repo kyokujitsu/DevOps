@@ -2,7 +2,7 @@
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: quickstart
+  name: default
 spec:
   version: 7.11.2
   http:
@@ -31,7 +31,7 @@ env:
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
-  name: quickstart
+  name: default
 spec:
   version: 7.11.2
   http:
@@ -40,7 +40,7 @@ spec:
         type: LoadBalancer #Adds a External IP
   count: 1
   elasticsearchRef:
-    name: quickstart
+    name: default
   config:
     xpack.monitoring.kibana.collection.enabled: false
     xpack.monitoring.collection.enabled: true
