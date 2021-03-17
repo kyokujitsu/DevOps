@@ -1,8 +1,7 @@
----
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
-  name: default
+  name: quickstart
 spec:
   version: 7.11.2
   http:
@@ -13,25 +12,46 @@ spec:
   - name: default
     count: 3
     config:
+      node.roles: ["master"]
+    volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: standard
+  - name: data-nodes
+    count: 5
+    config:
       node.store.allow_mmap: false
       xpack.monitoring.collection.enabled: true
       xpack.monitoring.elasticsearch.collection.enabled: false
+      node.roles: ["data"]
+    volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        storageClassName: standard
     podTemplate:
       metadata:
         labels:
           stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
+          scrape: es
         annotations:
           co.elastic.logs/enabled: "true"
-env:
-  - name: NODE_NAME
-    valueFrom:
-      fieldRef:
-        fieldPath: spec.nodeName
 ---
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
-  name: default
+  name: quickstart
 spec:
   version: 7.11.2
   http:
@@ -40,7 +60,7 @@ spec:
         type: LoadBalancer #Adds a External IP
   count: 1
   elasticsearchRef:
-    name: default
+    name: quickstart
   config:
     xpack.monitoring.kibana.collection.enabled: false
     xpack.monitoring.collection.enabled: true
@@ -48,5 +68,6 @@ spec:
     metadata:
       labels:
         stack-monitoring.elastic.co/type: kb # to allow autodiscover by metricbeat
+        scrape: es
       annotations:
         co.elastic.logs/enabled: "true"
