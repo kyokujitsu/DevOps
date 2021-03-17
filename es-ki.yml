@@ -20,6 +20,7 @@ spec:
       metadata:
         labels:
           stack-monitoring.elastic.co/type: es # to allow autodiscover by metricbeat
+          scrape: es
         annotations:
           co.elastic.logs/enabled: "true"
 env:
@@ -48,5 +49,6 @@ spec:
     metadata:
       labels:
         stack-monitoring.elastic.co/type: kb # to allow autodiscover by metricbeat
+        scrape: es
       annotations:
         co.elastic.logs/enabled: "true"
