@@ -1,16 +1,11 @@
----
 apiVersion: elasticsearch.k8s.elastic.co/v1
 kind: Elasticsearch
 metadata:
   name: quickstart
 spec:
   version: 7.11.2
-  http:
-    service:
-      spec:
-        type: LoadBalancer #Adds a External IP
   nodeSets:
-  - name: default
+  - name: master-nodes
     count: 3
     config:
       node.roles: ["master"]
@@ -22,7 +17,7 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 5Gi
+            storage: 10Gi
         storageClassName: standard
   - name: data-nodes
     count: 10
@@ -36,7 +31,7 @@ spec:
         - ReadWriteOnce
         resources:
           requests:
-            storage: 5Gi
+            storage: 10Gi
         storageClassName: standard
     config:
       node.store.allow_mmap: false
