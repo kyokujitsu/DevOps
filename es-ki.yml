@@ -10,7 +10,7 @@ spec:
       spec:
         type: LoadBalancer #Adds a External IP
   nodeSets:
-  - name: master-nodes
+  - name: default
     count: 3
     config:
       node.roles: ["master"]
