@@ -18,9 +18,9 @@ spec:
         accessModes:
         - ReadWriteOnce
         resources:
-          requests:
-            storage: 5Gi
-        storageClassName: standard
+        requests:
+          storage: 5Gi
+          storageClassName: standard
     count: 3
     config:
       node.store.allow_mmap: false
