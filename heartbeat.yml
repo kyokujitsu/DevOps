@@ -6,7 +6,9 @@ spec:
   type: heartbeat
   version: 7.11.2
   elasticsearchRef:
-    name: elasticsearch
+    name: quickstart
+  kibanaRef:
+    name: quickstart
   config:
     heartbeat.monitors:
     - type: tcp
