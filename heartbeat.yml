@@ -6,17 +6,17 @@ spec:
   type: heartbeat
   version: 7.11.2
   elasticsearchRef:
-    name: quickstart
+    name: monitoring-elasticsearch
   kibanaRef:
-    name: quickstart
+    name: monitoring-kibana
   config:
     heartbeat.monitors:
     - type: tcp
       schedule: '@every 5s'
-      hosts: ["quickstart-es-http.default.svc:9200"]
+      hosts: ["monitoring-elasticsearch-es-http.default.svc:9200"]
     - type: tcp
       schedule: '@every 5s'
-      hosts: ["quickstart-kb-http.default.svc:5601"]
+      hosts: ["monitoring-kibana-kb-http.default.svc:5601"]
   deployment:
     replicas: 1
     podTemplate:
