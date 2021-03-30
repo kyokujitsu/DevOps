@@ -6,10 +6,10 @@ metadata:
   namespace: elastic-monitoring
 spec:
   version: 7.12.0
-  http:
-    service:
-      spec:
-        type: LoadBalancer #Adds a External IP
+  # http:
+  #   service:
+  #     spec:
+  #       type: LoadBalancer #Adds a External IP
   nodeSets:
   - name: master-data
     count: 3
@@ -44,10 +44,10 @@ metadata:
   namespace: elastic-monitoring
 spec:
   version: 7.12.0
-  http:
-    service:
-      spec:
-        type: LoadBalancer #Adds a External IP
+  # http:
+  #   service:
+  #     spec:
+  #       type: LoadBalancer #Adds a External IP
   count: 1
   elasticsearchRef:
     name: monitoring-elasticsearch
