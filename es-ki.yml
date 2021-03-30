@@ -14,13 +14,13 @@ spec:
     count: 3
     volumeClaimTemplates:
     - metadata:
-        name: quickstart-data
+        name: elasticsearch-data
       spec:
         accessModes:
         - ReadWriteOnce
         resources:
-          request:
-            storage: 10Gi
+          requests:
+            storage: 5Gi
         storageClassName: standard
     config:
       node.store.allow_mmap: false
